@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addTodo } from '../../actions/todo'
+import { Form, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap'
 
 let AddTodo = ({dispatch}) => {
   let input
@@ -13,10 +14,17 @@ let AddTodo = ({dispatch}) => {
 
   return (
     <div>
-      <form onSubmit={onSubmit}>
-        <input ref={node => {input = node}}/>
-        <button type>Add Todo</button>
-      </form>
+      <Form onSubmit={onSubmit} inline>
+        <FormGroup controlId="formInlineTask">
+          <ControlLabel>Task</ControlLabel>
+          {''}
+          <input ref={node => {input = node}}/>
+        </FormGroup>
+        {''}
+        <Button type="submit">
+          Add Todo
+        </Button>
+      </Form>
     </div>
   )
 }
