@@ -1,10 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addTodo } from '../../actions/todo'
-import { Form, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap'
+import { Form, FormGroup, ControlLabel, FormControl, Button, Glyphicon } from 'react-bootstrap'
 
 let AddTodo = ({dispatch}) => {
-  let input
+  let input, text
+
+  const onChange = (e) => {
+    input = e.target
+    text = e.target.value
+  }
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -18,10 +23,12 @@ let AddTodo = ({dispatch}) => {
         <FormGroup controlId="formInlineTask">
           <ControlLabel>Task</ControlLabel>
           {''}
-          <input ref={node => {input = node}}/>
+          <FormControl type="text" onChange={onChange} />
         </FormGroup>
         {''}
         <Button type="submit">
+          <Glyphicon glyph="plus" />
+          {''}
           Add Todo
         </Button>
       </Form>

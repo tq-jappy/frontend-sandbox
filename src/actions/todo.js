@@ -1,11 +1,17 @@
-export function addTodo(text) {
-  return { type: 'ADD_TODO', text }
+let nextTodoId = 100
+
+export const addTodo = (text) => {
+  return { type: 'ADD_TODO', id: nextTodoId++, text }
 }
 
-export function completeTodo(id) {
+export const completeTodo = (id) => {
   return { type: 'COMPLETE_TODO', id }
 }
 
-export function setVisibilityFilter(filter) {
+export const toggleTodo = (id) => {
+  return { type: 'TOGGLE_TODO', id }
+}
+
+export const setVisibilityFilter = (filter) => {
   return { type: 'SET_VISIBILITY_FILTER', filter }
 }

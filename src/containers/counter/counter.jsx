@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Button, ButtonGroup } from 'react-bootstrap'
+import { Button, ButtonGroup, Glyphicon } from 'react-bootstrap'
 import * as actions from '../../actions/counter'
 
 let App = ({counter, dispatch}) => (
@@ -8,14 +8,18 @@ let App = ({counter, dispatch}) => (
     <h1>Counter</h1>
     <div>{counter}</div>
     <ButtonGroup>
-    <Button bsStyle="success" onClick={() => dispatch(actions.incrementCounter())}>+</Button>
-    <Button bsStyle="success" onClick={() => dispatch(actions.decrementCounter())}>-</Button>
+      <Button bsStyle="success" onClick={() => dispatch(actions.incrementCounter())}>
+        <Glyphicon glyph="plus" />
+      </Button>
+      <Button bsStyle="success" onClick={() => dispatch(actions.decrementCounter())}>
+        <Glyphicon glyph="minus" />
+      </Button>
     </ButtonGroup>
   </div>
 )
 
 // ReactとReduxの接続
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return { counter: state.counter }
 }
 App = connect(mapStateToProps)(App)

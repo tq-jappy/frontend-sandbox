@@ -1,7 +1,7 @@
-export function incrementCounter() {
+export const incrementCounter = () => {
   return { type: 'INCREMENT_COUNTER' }
 }
 
-export function decrementCounter() {
+export const decrementCounter = () => {
   return { type: 'DECREMENT_COUNTER' }
 }
