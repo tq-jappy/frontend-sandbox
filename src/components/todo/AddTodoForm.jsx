@@ -1,6 +1,8 @@
 import React from 'react'
+import { TextField, RaisedButton } from 'material-ui'
 import { addTodo } from '../../actions/todo'
-import { Form, FormGroup, ControlLabel, FormControl, Button, Glyphicon } from 'react-bootstrap'
+
+const KEY_ENTER = 13;
 
 const AddTodoForm = ({ onSubmit }) => {
   let input, text;
@@ -19,19 +21,13 @@ const AddTodoForm = ({ onSubmit }) => {
 
   return (
     <div>
-      <Form onSubmit={submit} inline>
-        <FormGroup controlId="formInlineTask">
-          <ControlLabel>Task</ControlLabel>
-          {''}
-          <FormControl type="text" onChange={onChange} />
-        </FormGroup>
-        {''}
-        <Button type="submit">
-          <Glyphicon glyph="plus" />
-          {''}
-          Add Todo
-        </Button>
-      </Form>
+      <form onSubmit={submit}>
+        <TextField
+          hintText="Todo"
+          floatingLabelText="What Task?"
+          onChange={onChange} />
+        <RaisedButton label="Add Todo" primary={true} type="submit" />
+      </form>
     </div>
   )
 }

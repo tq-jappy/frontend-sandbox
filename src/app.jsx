@@ -2,9 +2,6 @@
 
 require('babel-polyfill');
 
-require('bootstrap/dist/css/bootstrap.css')
-require('bootstrap/dist/css/bootstrap-theme.css');
-
 // import redux
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import createLogger from 'redux-logger';
@@ -19,6 +16,8 @@ import { call, put, takeLatest, fork } from 'redux-saga/effects';
 
 import { Router, Route, createMemoryHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer, push } from 'react-router-redux';
+
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import App from './containers/MainApp';
 import Counter from './containers/counter/CounterApp';
@@ -43,12 +42,28 @@ const createRouteWorker = (history) => {
 const logger = createLogger();
 const sagaMiddleware = createSagaMiddleware();
 
+const getInitialState = () => ({
+  counter: {
+    counter: 12
+  },
+  todo: {
+    todos: [
+      { id: 0, text: '0-aaa', completed: false },
+      { id: 1, text: '1-aaa', completed: true }
+    ],
+    visibilityFilter: 'SHOW_ACTIVE'
+  }
+});
+
 const store = createStore(
   reducers,
-  applyMiddleware(logger, sagaMiddleware)
+  getInitialState(),
+  applyMiddleware(logger, sagaMiddleware),
 )
 
 const history = syncHistoryWithStore(createMemoryHistory(), store);
+
+injectTapEventPlugin();
 
 sagaMiddleware.run(function* () {
   yield [

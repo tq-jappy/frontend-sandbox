@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import Todo from './Todo'
+import { List, Subheader } from 'material-ui';
 
 const TodoList = ({ todos, onTodoClick }) => {
   if (todos.length === 0) {
@@ -7,18 +8,18 @@ const TodoList = ({ todos, onTodoClick }) => {
   }
 
   return <div>
-    <h2>ToDo List</h2>
-    <ul>
-    {
-      todos.map(todo =>
-        <Todo
-          key={todo.id}
-          {...todo}
-          onClick={() => onTodoClick(todo.id)}
-        />
-      )
-    }
-    </ul>
+    <List>
+      <Subheader>ToDo List</Subheader>
+      {
+        todos.map(todo =>
+          <Todo
+            key={todo.id}
+            {...todo}
+            onClick={() => onTodoClick(todo.id)}
+          />
+        )
+      }
+    </List>
   </div>
 }
 
