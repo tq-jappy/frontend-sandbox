@@ -1,8 +1,12 @@
 import React, { PropTypes } from 'react'
 import Todo from './Todo'
 
-const TodoList = ({ todos, onTodoClick }) => (
-  <div>
+const TodoList = ({ todos, onTodoClick }) => {
+  if (todos.length === 0) {
+    return <p>Empty</p>
+  }
+
+  return <div>
     <h2>ToDo List</h2>
     <ul>
     {
@@ -16,7 +20,7 @@ const TodoList = ({ todos, onTodoClick }) => (
     }
     </ul>
   </div>
-)
+}
 
 TodoList.propTypes = {
   todos: PropTypes.array.isRequired,

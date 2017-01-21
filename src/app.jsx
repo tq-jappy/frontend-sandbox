@@ -5,7 +5,6 @@ require('babel-polyfill');
 require('bootstrap/dist/css/bootstrap.css')
 require('bootstrap/dist/css/bootstrap-theme.css');
 
-
 // import redux
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import createLogger from 'redux-logger';
@@ -24,8 +23,7 @@ import { syncHistoryWithStore, routerReducer, push } from 'react-router-redux';
 import { Button, ButtonGroup, Glyphicon } from 'react-bootstrap'
 
 import Counter from './containers/counter/counter';
-
-import ToDo from './components/todo/App';
+import Todo from './components/todo/TodoApp';
 
 import counterState from './reducers/counter';
 import todoState from './reducers/todo';
@@ -91,7 +89,7 @@ ReactDOM.render(
       <Router history={history}>
         <Route path="/" component={App}>
           <Route path="/counter" component={Counter} />
-          <Route path="/todo" component={ToDo} />
+          <Route path="/todo" component={Todo} />
           <Route path="/misc" component={Counter} />
           <Route path="*" component={NoContent} />
         </Route>
