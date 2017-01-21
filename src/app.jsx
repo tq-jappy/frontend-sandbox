@@ -22,11 +22,10 @@ import { syncHistoryWithStore, routerReducer, push } from 'react-router-redux';
 
 import { Button, ButtonGroup, Glyphicon } from 'react-bootstrap'
 
-import Counter from './containers/counter/counter';
+import Counter from './containers/counter/CounterApp';
 import Todo from './components/todo/TodoApp';
 
-import counterState from './reducers/counter';
-import todoState from './reducers/todo';
+import reducers from './reducers';
 
 const ACTIONS = {
   NAVIGATE: 'NAVIGATE'
@@ -44,14 +43,8 @@ const createRouteWorker = (history) => {
 const logger = createLogger();
 const sagaMiddleware = createSagaMiddleware();
 
-const reducer = combineReducers({
-  counterState,
-  todoState,
-  routing: routerReducer
-});
-
 const store = createStore(
-  reducer,
+  reducers,
   applyMiddleware(logger, sagaMiddleware)
 )
 
