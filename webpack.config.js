@@ -1,13 +1,10 @@
-var webpack = require('webpack');
+var webpack = require('webpack'),
+    LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = {
-  context: __dirname + '/src',
+  // context: __dirname + '/src',
   entry: {
-    counter: './counter.js',
-    'counter-app': './counter.jsx',
-    todo: './todo.js',
-    'todo-app': './todo.jsx',
-    html: './index.html'
+    app: './src/app.jsx'
   },
   output: {
     path: __dirname + '/build',
@@ -16,26 +13,23 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
-  // devtool: "source-map",
-  plugins: [],
+  devServer: {
+    contentBase: 'build',
+    hot: true,
+    port: 4444
+  },
+  plugins: [
+    new LiveReloadPlugin({ appendScriptTag: true })
+  ],
   module: {
     loaders: [
       {
-        test: /\.jsx$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel',
         query: {
           cacheDirectory: true,
           presets: ['es2015', 'react']
-        }
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel',
-        query: {
-          cacheDirectory: true,
-          presets: ['es2015']
         }
       },
       {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Button, ButtonGroup, Glyphicon } from 'react-bootstrap'
 import * as actions from '../../actions/counter'
 
-let App = ({counter, dispatch}) => (
+const Counter = ({counter, dispatch}) => (
   <div>
     <h1>Counter</h1>
     <div>{counter}</div>
@@ -18,10 +18,8 @@ let App = ({counter, dispatch}) => (
   </div>
 )
 
-// ReactとReduxの接続
-const mapStateToProps = (state) => {
-  return { counter: state.counter }
-}
-App = connect(mapStateToProps)(App)
-
-export default App
+export default connect(
+  state => ({
+    counter: state.counterState.counter
+  })
+)(Counter);
