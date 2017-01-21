@@ -20,10 +20,10 @@ import { call, put, takeLatest, fork } from 'redux-saga/effects';
 import { Router, Route, createMemoryHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer, push } from 'react-router-redux';
 
-import { Button, ButtonGroup, Glyphicon } from 'react-bootstrap'
-
+import App from './containers/MainApp';
 import Counter from './containers/counter/CounterApp';
 import Todo from './components/todo/TodoApp';
+import NoContent from './components/NoContent';
 
 import reducers from './reducers';
 
@@ -48,28 +48,8 @@ const store = createStore(
   applyMiddleware(logger, sagaMiddleware)
 )
 
-const NoContent = ReactRedux.connect()(() => <div>Nothing to show</div>);
-
-const App = ReactRedux.connect(
-  null,
-  dispatch => ({
-    navigateToPath: (path) => dispatch({ type: ACTIONS.NAVIGATE, path: path })
-  })
-)(({ navigateToPath, children }) =>
-  <div>
-    <ButtonGroup>
-      <Button bsStyle="success" onClick={() => navigateToPath("/counter")}>Counter</Button>
-      <Button bsStyle="success" onClick={() => navigateToPath("/todo")}>ToDo</Button>
-    </ButtonGroup>
-    {children}
-  </div>
-);
-
-// =============================
-
 const history = syncHistoryWithStore(createMemoryHistory(), store);
 
-// async action worker
 sagaMiddleware.run(function* () {
   yield [
     fork(createRouteWorker(history))
