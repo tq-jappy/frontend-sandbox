@@ -22,6 +22,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import App from './containers/MainApp';
 import Counter from './containers/counter/CounterApp';
 import Todo from './components/todo/TodoApp';
+import Map from './components/map/MapApp';
 import NoContent from './components/NoContent';
 
 import reducers from './reducers';
@@ -52,6 +53,9 @@ const getInitialState = () => ({
       { id: 1, text: '1-aaa', completed: true }
     ],
     visibilityFilter: 'SHOW_ACTIVE'
+  },
+  map: {
+    lat: 35.0, lng: 135.0, width: 800, height: 300
   }
 });
 
@@ -78,7 +82,7 @@ ReactDOM.render(
         <Route path="/" component={App}>
           <Route path="/counter" component={Counter} />
           <Route path="/todo" component={Todo} />
-          <Route path="/misc" component={Counter} />
+          <Route path="/map" component={Map} />
           <Route path="*" component={NoContent} />
         </Route>
       </Router>

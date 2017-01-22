@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { FloatingActionButton } from 'material-ui';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ContentRemove from 'material-ui/svg-icons/content/remove';

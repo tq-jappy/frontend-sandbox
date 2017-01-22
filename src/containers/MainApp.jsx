@@ -25,6 +25,7 @@ export default connect(
           >
             <MenuItem onClick={() => onMenuClick("/counter")}>Counter</MenuItem>
             <MenuItem onClick={() => onMenuClick("/todo")}>ToDo</MenuItem>
+            <MenuItem onClick={() => onMenuClick("/map")}>Map</MenuItem>
           </IconMenu>
         }/>
       </header>
